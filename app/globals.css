@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── Night mode (default) ── */
+  :root,
+  .night {
+    color-scheme: dark;
+    --color-background: #0f1117;
+    --color-surface: #1a1d27;
+    --color-card: #21253a;
+    --color-border: #2d3149;
+    --color-text-primary: #f1f5f9;
+    --color-text-muted: #94a3b8;
+  }
+
+  /* ── Day mode ── */
+  .day {
+    color-scheme: light;
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-card: #ffffff;
+    --color-border: #e8eaed;
+    --color-text-primary: #111827;
+    --color-text-muted: #6b7280;
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
+
+  /* Light mode: give surfaces depth via shadows instead of color contrast */
+  .day body {
+    background-color: #f3f4f6;
+  }
+
+  .day .bg-surface {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .day .bg-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  /* Date input styling */
+  .night input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) opacity(0.5);
+    cursor: pointer;
+  }
+
+  .day input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: opacity(0.5);
+    cursor: pointer;
+  }
+
+  /* Select option styling */
+  option {
+    background-color: var(--color-card);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation-duration: 200ms;
+    animation-fill-mode: both;
+  }
+
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-in-from-right-full {
+    animation-name: slide-in-from-right;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
